@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap" rel="stylesheet"> 
+    <%= wicked_pdf_stylesheet_link_tag 'invoice' %>
+    <title>Factura</title>
+</head>
+<body>
+
+  <div class="invoice">
+    <div class="invoice__header">
+      <div class="invoice__header-description">
+        <div style="text-align: left;" class="invoice__header-company">
+          <%= @company_details.company_name %>
+        </div>
+        <span style="overflow-wrap: break-word;" class="invoice__header-description" ><%= @company_details.address %></span><br>
+        <span><%= @company_details.city %> <%= @company_details.country %></span><br>
+        <span><%= @company_details.phone_number %></span>
+      </div>
+
+      <div class="invoice__header-details" style="position:absolute; right:5px; top:0px">
+        <ul>
+          <li>Nit: &nbsp;&nbsp;<%= @company_details.nit %> </li>
+          <li>Nro Factura: &nbsp;&nbsp;<%= @invoice.number %> </li>
+          <li>Nro Autorizacion: &nbsp; <%= @invoice_dosage.authorization_number %></li>
+          <li><b>Original</b></li>
+          <li>Actividad Econimica: <%= @invoice_dosage.economic_activity %></li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:55px;" class="invoice__title">
+      <h1>Factura</h1>
+    </div>
+    <div class="invoice__customer">
+      <div class="invoice__customer-date">
+      <div>
+        Lugar: <span> <%= @company_details.city %>, <%= @company_details.state %></span>
+      </div>
+        <div style=" position:absolute; right:200px; top:192px">
+          Fecha: <span> <%= Time.now.to_s[0..9] %> </span>
+        </div>
+      </div>
+      <div style="padding-left: 3px;">
+        Señor(es):  <span><%= @invoice.customer_name %></span>
+      </div>
+      <div style="position: absolute; right: 200px; top:245px;">
+        NIT/CI: <span><%= @invoice.customer_nit%></span>
+      </div>
+    </div>
+    <div class="invoice__items">
+      <table class="table">
+        <thead class="invoice__items-head">
+          <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @invoice.sales.each do |sale| %>
+          <% sale.line_items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= item.detail %></td>
+              <td><%= item.quantiy %></td>
+              <td><%= item.total_price / item.quantiy %></td>
+              <td><%= item.total_price %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th style="background-color:black; color:white;">SON </th>
+            <td><%= @invoice.amount.to_f.to_words.capitalize%></td>
+            <th style="background-color:black; color:white;" >TOTAL Bs </th>
+            <td><%= @invoice.amount%></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <table style="margin-left:100px;">
+        <tbody>
+          <tr>
+            <td><span><b>CODIGO DE CONTROL:</b> <%= @invoice.control_code%></span></td>
+            <td><%= image_tag @invoice.qr_code_image %></span></td>
+            <td><span><b>FECHA LIMITE EMISION:</b> <%= @invoice_dosage.emission_deadline.to_s[0..9]%></span></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align:center;">
+      <b style="font-size:14px;">“ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS. EL USO ILÍCITO DE ÉSTA SERÁ SANCIONADO DE ACUERDO A LEY”.</b><br/> Ley n° 453: tienes derecho a recibir información sobre las características y contenidos de los servicios que utilices.
+    </div>
+  </div>
+
+</body>
+</html>

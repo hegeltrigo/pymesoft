@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @treasury_petty_cash.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @treasury_petty_cash.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_treasury_petty_cash_path(@treasury_petty_cash) %> |
+<%= link_to 'Back', treasury_petty_cashes_path %>

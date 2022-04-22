@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Entrada</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <p>
+          <strong>Producto:</strong>
+          <%= @input.item.name %>
+        </p>
+
+        <p>
+          <strong>Proveedor:</strong>
+          <%= @input.supplier.name %>
+        </p>
+
+        <p>
+          <strong>Descripción:</strong>
+          <%= @input.description %>
+        </p>
+
+        <p>
+          <strong>Fecha:</strong>
+          <%= @input.input_date.strftime("%d/%m/%Y") %>
+        </p>
+
+        <p>
+          <strong>Cantidad:</strong>
+          <%= @input.quantity %>
+        </p>
+
+        <br>
+        <%= link_to 'Editar', edit_input_path(@input), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', inputs_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

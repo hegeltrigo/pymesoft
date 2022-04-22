@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Libro de Compras</h1>
+
+<div class="container">
+  <form action="/book_purchase/export_excel"> 
+    <div class="row">
+      <div class="col-12">
+        <div>
+          <label>Fecha Inicial</label>
+          <input class="form-control" type="date" name="start_date" placeholder="Fecha Inicial">
+        </div>
+        <div>
+          <label>Fecha Final</label>
+          <input class="form-control" type="date" name="end_date" placeholder="Fecha Inicial">
+        </div>
+        <div>
+        </div>
+      </div>
+      <div class="col-12" style="margin-top:12px;">
+        <button type="submit" class="btn btn-primary">Buscar ahora</button>
+      </div>
+    </div>
+  </form>
+</div>
+

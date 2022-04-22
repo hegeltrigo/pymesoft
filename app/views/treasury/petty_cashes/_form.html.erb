@@ -1,0 +1,27 @@
+<%= form_with(model: treasury_petty_cash, local: true) do |form| %>
+  <% if treasury_petty_cash.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(treasury_petty_cash.errors.count, "error") %> prohibited this treasury_petty_cash from being saved:</h2>
+
+      <ul>
+      <% treasury_petty_cash.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

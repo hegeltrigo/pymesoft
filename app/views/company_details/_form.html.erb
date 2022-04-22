@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row" style="justify-content: center;">
+    <div class="col-md-6 m-b-20">
+      <%= form_with(model: company_detail, id: 'company_details', local: true)  do |form| %>
+        <% if company_detail.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(input.errors.count, "error") %> prohibited this input from being saved:</h2>
+            <ul>
+              <% company_detail.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label 'Nombre Empresa' %>
+          <%= form.text_field :company_name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'NIT de Empresa' %>
+          <%= form.text_field :nit, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'Número de teléfono' %>
+          <%= form.text_field :phone_number, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'Dirección' %>
+          <%= form.text_field :address, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'Ciudad' %>
+          <%= form.text_field :city, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'Departamento' %>
+          <%= form.text_field :state, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'País' %>
+          <%= form.text_field :country, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label 'Logo' %>
+          <%= form.file_field :logo, class: 'form-control' %>
+        </div>
+
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+      <% end %>
+    </div>  
+  </div>          
+</div>

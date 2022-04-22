@@ -1,0 +1,37 @@
+<%= form_with(model: treasury_input, local: true) do |form| %>
+  <% if treasury_input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(treasury_input.errors.count, "error") %> prohibited this treasury_input from being saved:</h2>
+
+      <ul>
+      <% treasury_input.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label 'Fecha' %>
+    <%= form.datetime_select :input_date, :disabled => true %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Descripción' %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Cantidad' %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <%= form.hidden_field :treasury_petty_cash_id, value: session[:petty_cash_active]["id"] %>
+
+
+
+  <div class="actions">
+    <%= form.submit "Guardar entrada" %>
+
+  </div>
+<% end %>

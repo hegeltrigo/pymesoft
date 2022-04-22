@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+total = 0
+total_discount = 0
+wb.add_worksheet(name: "Invoices") do |sheet|
+style1 = sheet.styles.add_style( :fg_color => "000000", b:true, :alignment=>{:horizontal => :right}, :font_name => "Calibri")
+style2 = sheet.styles.add_style(:alignment=>{:horizontal => :left}, :font_name => "Calibri")
+sheet.add_row ["COD", "Nro", "Fecha" , "Nro. de Factura", "Nro. de autorización", "Estado", "NIT/CI del Comprador", "Nombre o Razón social", "Total Factura", "Importe ICE/ IEHD/ IPJ/ tasas/ Otros no sujetos al Iva", "Exportaciones y operaciones exentas", "Ventas Grabadas a tasa cero",
+ "Subtotal ", "Descuentos, bonificaciones y rebajas sujetas al iva", "Importe Base para débito fiscal", "Débito Fiscal", "Código de Control"], :style => style1
+  @invoices.each_with_index do |invoice, index|
+    total += invoice["amount"].to_f if invoice["state"] != "A"
+    total_discount += invoice["amount"].to_f * 0.13 if invoice["state"] != "A"
+    sheet.add_row ["3", index + 1 , invoice["created_at"][0,10], invoice["number"] ,invoice["authorization_number"],invoice["state"] == "A" ? "A" : "V", invoice["customer_nit"], invoice["customer_name"] ,invoice["amount"], "0,00", "0,00", "0,00", invoice["amount"], "0,00", invoice["amount"], invoice["amount"].to_f * 0.13, invoice["control_code"]], :style => style2
+  end
+  sheet.add_row ["", "", "", "", "", "", "", "TOTAL Bs.", total, "", "" ,"TOTAL Bs.", total,"TOTAL Bs.", total ,total_discount], :style => style1
+end

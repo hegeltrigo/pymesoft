@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <div class="row">
+      <div class="col-md-6 m-b-20">
+
+          <%= form_with(model: supplier, id: 'supplier', local: true) do |form| %>
+            <% if supplier.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
+
+                <ul>
+                <% supplier.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            
+            <div class="form-group">
+                <%= form.label 'Nombre' %>
+                <%= form.text_field :name, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Telefono' %>
+                <%= form.text_field :cellphone, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Dirección' %>
+                <%= form.text_field :address, class: 'form-control' %>
+            </div>
+
+
+            <div class="form-group">
+                <%= form.label 'Nit' %>
+                <%= form.text_field :identifier, class: 'form-control' %>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <%= link_to 'Atrás', suppliers_path, class: 'btn btn-default' %>
+
+        <% end %>
+      </div>
+    </div>  
+
+    </div>          
+  </div>
+  
+</div>
+
+

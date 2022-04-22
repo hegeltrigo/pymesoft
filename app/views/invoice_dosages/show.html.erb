@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Entrada</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+       <p>
+          <strong>Número de Autorización:</strong>
+          <%= @invoice_dosage.authorization_number %>
+        </p>
+
+        <p>
+          <strong>Fecha límite de emisión:</strong>
+          <%= @invoice_dosage.emission_deadline.strftime("%d/%m/%Y") %>
+        </p>
+
+        <p>
+          <strong>Número inicial de factura:</strong>
+          <%= @invoice_dosage.invoice_initial_number %>
+        </p>
+
+        <p>
+          <strong>Leyenda:</strong>
+          <%= @invoice_dosage.legend %>
+        </p>
+
+        <p>
+          <strong>Llave de dosificación:</strong>
+          <%= @invoice_dosage.dosage_key %>
+        </p>
+
+        <p>
+          <strong>Actividad Economica:</strong>
+          <%= @invoice_dosage.economic_activity %>
+        </p>
+
+        <p>
+          <strong>Activa:</strong>
+          <% if @invoice_dosage.active %>
+            SI
+          <% else %>
+            NO
+          <% end %>
+        </p>
+
+        <br>
+        <%= link_to 'Editar', edit_invoice_dosage_path(@invoice_dosage), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', invoice_dosages_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

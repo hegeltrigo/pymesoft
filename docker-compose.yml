@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:10-alpine'
+    environment:
+      POSTGRES_USER: 'youruser'
+      POSTGRES_PASSWORD: 'yourpassword'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+
+  webpack:
+    build: .
+    env_file:
+      - '.env'
+    command: ./bin/webpack-dev-server --inline true
+    volumes:
+      - '.:/front'
+    ports:
+      - '3035:3035'
+
+  web:
+    depends_on:
+      - 'postgres'
+      - 'webpack'
+    build: .
+    tty: true
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    command: puma -C config/puma.rb
+    
+    volumes:
+      - '.:/tiluu'
+      - cache:/cache # Added to support Windows 10 Docker
+    environment:
+      - SPROCKETS_CACHE=/cache # Added to support Windows 10 Docker
+    env_file:
+      - '.env'
+
+volumes:
+  postgres:
+  webpack:
+  cache: # Added to support Windows 10 Docker

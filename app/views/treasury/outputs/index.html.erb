@@ -1,0 +1,48 @@
+
+<% if session[:petty_cash_active].present? %>
+  <p id="notice"><%= notice %></p>
+ 
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="header-title m-t-0 m-b-20">
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Salidas - Caja chica <%= @petty_cash.start_date.strftime('%d/%m/%Y %H:%M:%S') %></h5>
+            </div>
+            <div class="col-md-6">
+              <div class="text-right" style="display:flex; justify-content:center;">
+              <%= link_to 'Nueva Salida', new_treasury_output_path, class: 'btn btn-primary' %>
+            </div>
+          </div>
+
+        </div>
+
+    </div>                 
+  </div>      
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+
+          <table class="table color-table primary-table" data-page-list="[10, 25, 50, 100, Todos]" data-pagination="true" data-search="true" data-show-columns="true" data-show-export="true" data-show-toggle="true" data-side-pagination="server" data-sort-name="name" data-sort-order="asc" data-toggle="table" data-url="<%= treasury_outputs_path(format: :json) %>" id="treasury-outputs-table">
+            <thead>
+              <tr>
+                <th data-field="description" data-sortable="true">Descripción</th>
+                <th class="td-actions text-center" data-field="quantity">Cantidad</th>
+                <th class="td-actions text-center" data-field="actions"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>  
+        <br>
+      </div>          
+    </div>
+  </div>
+
+<% else %>
+  <div class="alert alert-warning" role="alert">
+      Tiene que abrir caja para crear salidas
+  </div>
+<% end %>
+

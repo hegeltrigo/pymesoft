@@ -1,0 +1,65 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Factura</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <p>
+          <strong>Numero de Factura:</strong>
+          <%= @invoice.number  %>
+        </p>
+
+        <p>
+          <strong>Monto</strong>
+          <%= @invoice.amount  %> Bs.
+        </p>
+
+        <p>
+          <strong>Fecha:</strong>
+          <%= @invoice.created_at %>
+        </p>
+
+        <p>
+          <strong>Numero de Autorizacion:</strong>
+          <%= @invoice.invoice_dosage.authorization_number %>
+        </p>
+
+        <p>
+          <strong>Codigo de control:</strong>
+          <%= @invoice.control_code %>
+        </p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @invoice.sales[0].line_items.each do |item| %>
+              <tr>
+                <td><%= item.detail%></td>
+                <td><%= item.total_price / item.quantiy %></td>
+                <td><%= item.quantiy%></td>
+                <td><%= item.total_price%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= link_to 'Atrás', invoices_path, class: 'btn btn-default' %>
+        <a data-confirm='¿Estás seguro(a)?' class='btn btn-icon btn-danger btn-sm' rel='nofollow' data-method='delete' href='/invoices/<%= @invoice.id %>'>Anular Factura</a>
+    </div>          
+  </div>
+  
+</div>
+
+

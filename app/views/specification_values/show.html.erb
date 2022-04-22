@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Categoría</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <p>
+          <strong>Valor:</strong>
+          <%= @specification_value.value %>
+        </p>
+      
+        <p>
+          <strong>Categoria:</strong>
+          <%= Specification.find(@specification_value.specification_id).name %>
+        </p>
+        <br>
+        <%= link_to 'Editar', edit_specification_value_path(@specification_value), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', specification_values_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

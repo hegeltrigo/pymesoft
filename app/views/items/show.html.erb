@@ -1,0 +1,88 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Producto</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <% if @item.image.attached? %>
+          <p>
+            <strong>Imagen:</strong><br>
+            <%= image_tag(@item.image, :style => "width:400px;height:auto;")   %>
+          </p>
+        <%end %>
+
+        <p>
+          <strong>Upc:</strong>
+          <%= @item.upc %>
+        </p>
+
+        <p>
+          <strong>Código:</strong>
+          <%= @item.sku %>
+        </p>
+
+        <p>
+          <strong>Nombre:</strong>
+          <%= @item.name %>
+        </p>
+
+        <p>
+          <strong>Descripción:</strong>
+          <%= @item.description %>
+        </p>
+
+        <p>
+          <strong>Entradas:</strong>
+          <%= @item.input %>
+        </p>
+
+        <p>
+          <strong>Salidas:</strong>
+          <%= @item.output %>
+        </p>
+
+        <p>
+          <strong>disponible en stock:</strong>
+          <%= @item.amount_stock %>
+        </p>
+
+        <p>
+          <strong>Precio:</strong>
+          <%= @item.price %>
+        </p>
+
+        <p>
+          <strong>Precio al costo:</strong>
+          <%= @item.cost_price %>
+        </p>
+
+        <p>
+          <strong>Publicado:</strong>
+          <% if @item.published %>
+            SI
+          <% else %>
+            NO
+          <% end %>
+
+        </p>
+
+        <p>
+          <strong>Categoría:</strong>
+          <%= @item.category.name %>
+        </p>
+
+        <br>
+        <%= link_to 'Editar', edit_item_path(@item), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', items_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

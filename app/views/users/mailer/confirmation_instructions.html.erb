@@ -1,0 +1,6 @@
+<p>Bienvenido <%= @email %>!</p>
+
+<p>Tu puedes confirmar tu cuenta através del siguiente link:</p>
+
+
+<p><%= link_to 'Confirmar cuenta', confirmation_url(@resource, :confirmation_token => @token, locale: I18n.locale, subdomain: Apartment::Tenant.current)  %></p>

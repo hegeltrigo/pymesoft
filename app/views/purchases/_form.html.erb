@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <div class="row">
+      <div class="col-md-12 m-b-20">
+
+          <%= form_with(model: purchase, id: 'purchase', local: true) do |form| %>
+            <% if purchase.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+
+                <ul>
+                <% purchase.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="row" id="01">
+              <div class="form-group col-md-6">
+                  <%= form.label 'Fecha de Compra' %>
+                  <%= form.text_field :purchase_date, class: 'form-control datepicker' %>
+              </div>
+
+              <div class="form-group col-md-6">
+                <%= form.label 'Proveedor' %>
+                <%= form.select :supplier_id, options_for_select(Supplier.all.map{ |c| [c.name, c.id]}),  {}, { :class => 'form-control' } %>
+              </div>
+              <div class="col-md-12">
+                <hr>
+              </div>
+              <div class="form-group col-md-4">
+                <%= form.label 'Tipo de compra' %> 
+                <%= form.select :sales_type, options_for_select({ "Seleccione un valor" => "0",
+                                                                  "Compras para mercado interno con destino a actividades gravada" => "1",
+                                                                  "Compras para mercado interno con destino a actividades no gravadas" => "2",
+                                                                  "Compras sujetas a proporcionalidad" => "3",
+                                                                  "Compras para exportaciones" => "4",
+                                                                  "Compras tanto para el mercado interno como para exportaciones" => "5"}, purchase.sales_type.to_s),  {}, { :class => 'form-control' } %>
+              </div>
+
+              <div class="form-group col-md-4">
+                <%= form.label 'Tipo de Ticket' %>
+                <%= form.select :ticket_type, options_for_select(Purchase.get_ticket_type),  {}, { :class => 'form-control' } %>
+              </div>
+              <div class="form-group col-md-4">
+                  <%= form.label 'Numero de Ticket' %>
+                  <%= form.text_field :value, :onkeypress => "regExpressionTextNumbers(event)" ,class: 'form-control' %>
+              </div>
+              <div class="col-md-12">
+                <hr>
+              </div>
+              <div class="form-group col-md-6">
+                  <%= form.label 'Numero de Autorizacion' %>
+                  <%= form.text_field :authorization_number ,class: 'form-control' %>
+              </div>
+
+              <div class="form-group col-md-6">
+                  <%= form.label 'Codigo de Control' %>
+                  <%= form.text_field :control_code ,class: 'form-control' %>
+              </div>
+              <div class="col-md-12">
+                <hr>
+              </div>
+              <div class="form-group col-md-4">
+                  <%= form.label 'Importe no Sujeto a Credico Fiscal' %>
+                  <%= form.text_field :amount_not_subjet_to_tax_credict ,class: 'form-control' %>
+              </div>
+
+              <div class="form-group col-md-4">
+                  <%= form.label 'Descuentos, Bonificaciones y rebajas sujetas al IVA' %>
+                  <%= form.text_field :discounts_and_bonuses ,class: 'form-control' %>
+              </div>
+
+
+              <div class="form-group col-md-4">
+                  <%= form.label 'Total' %>
+                  <%= form.text_field :amount, class: 'form-control' %>
+              </div>
+          </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <%= link_to 'Atrás', purchases_path, class: 'btn btn-default' %>
+
+        <% end %>
+      </div>
+    </div>  
+
+    </div>          
+  </div>
+  
+</div>
+<script>
+
+document.getElementById('purchase_ticket_type').addEventListener('change', () => {
+  document.getElementById('purchase_value').value = ""
+})
+
+  function regExpressionTextNumbers(event) {
+    let value = document.getElementById('purchase_ticket_type').value
+    let regex;
+    if(value == "0"){
+      regex = new RegExp("^[0-9+$ ]")
+    }else {
+      regex = new RegExp("^[a-zA-Z0-9]+$")
+    }
+    let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    if (!regex.test(key)) {
+       event.preventDefault();
+       return false;
+    }
+  }
+</script>
+

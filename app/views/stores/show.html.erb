@@ -1,0 +1,31 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Almacen</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <p>
+          <strong>Nombre:</strong>
+          <%= @store.name %>
+        </p>
+
+        <p>
+          <strong>Descripción:</strong>
+          <%= @store.description %>
+        </p>
+
+        <br>
+        <%= link_to 'Editar', edit_store_path(@store), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', stores_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

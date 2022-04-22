@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Treasury Petty Cashes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @treasury_petty_cashes.each do |treasury_petty_cash| %>
+      <tr>
+        <td><%= treasury_petty_cash.start_date %></td>
+        <td><%= treasury_petty_cash.end_date %></td>
+        <td><%= link_to 'Show', treasury_petty_cash %></td>
+        <td><%= link_to 'Edit', edit_treasury_petty_cash_path(treasury_petty_cash) %></td>
+        <td><%= link_to 'Destroy', treasury_petty_cash, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Treasury Petty Cash', new_treasury_petty_cash_path %>

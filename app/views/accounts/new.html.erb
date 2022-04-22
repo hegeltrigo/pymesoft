@@ -1,0 +1,46 @@
+<%= form_for(@account, html: {id: 'company_signup', class: 'form-horizontal'}) do |f| %>
+
+<%= f.fields_for :owner do |o| %>
+<div class="form-group m-b-20">
+    <div class="col-xs-12">
+        <label for="username">Email</label>
+        <%= o.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", placeholder: 'juan@hotmail.com' %>
+    </div>
+</div>
+
+<div class="form-group m-b-20">
+    <div class="col-xs-12">
+        <label for="password">Contraseña</label>
+        <%= o.password_field :password, class: 'form-control', autocomplete: "off", placeholder: 'Ingrese su contraseña' %>
+    </div>
+</div>
+
+<div class="form-group m-b-20">
+    <div class="col-xs-12">
+        <label for="password">Repetir contraseña</label>
+        <%= o.password_field :password_confirmation, class: 'form-control', autocomplete: "off", placeholder: 'Ingrese su contraseña' %>
+    </div>
+</div>
+
+
+<% end %>
+<div class="form-group m-b-20">
+    <div class="col-xs-12">
+        <label for="username">Nombre Empresa</label>
+        <%= f.text_field :subdomain, class: 'form-control', placeholder: 'cocacola' %>
+    </div>
+</div>
+
+<%# <div class="form-group m-b-20">
+    <div class="col-xs-12">
+        <label for="image">Imagen de Perfil</label> %>
+        <%-#= f.file_field :image %>
+    <%# </div>
+</div> %>
+
+<div class="form-group account-btn text-center m-t-10">
+    <div class="col-xs-12">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse Gratis</button>
+    </div>
+</div>
+<% end %>

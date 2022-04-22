@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <div class="row">
+      <div class="col-md-6 m-b-20">
+
+          <%= form_with(model: invoice_dosage, id: 'invoice_dosage', local: true) do |form| %>
+            <% if invoice_dosage.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(invoice_dosage.errors.count, "error") %> prohibited this invoice_dosage from being saved:</h2>
+
+                <ul>
+                <% invoice_dosage.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+
+            <div class="form-group">
+                <%= form.label 'Número de Autorización' %>
+                <%= form.text_field :authorization_number, class: 'form-control' %>
+            </div>
+
+
+             <div class="form-group">
+                <%= form.label 'Fecha límite de emisión' %>
+                <%= form.text_field :emission_deadline, class: 'form-control datepicker' %>
+            </div>
+
+            
+            <div class="form-group">
+                <%= form.label 'Número inicial de factura' %>
+                <%= form.number_field :invoice_initial_number, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Llave de dosificación' %>
+                <%= form.text_field :dosage_key, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Computarizada' %>
+                <%= form.check_box :computarized %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Leyenda' %>
+                <%= form.text_field :legend, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label 'Actividad economica' %>
+              <%= form.text_field :economic_activity, class: 'form-control' %>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <%= link_to 'Atrás', invoice_dosages_path, class: 'btn btn-default' %>
+
+        <% end %>
+      </div>
+    </div>  
+
+    </div>          
+  </div>
+  
+</div>
+
+

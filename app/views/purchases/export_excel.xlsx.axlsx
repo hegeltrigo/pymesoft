@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Facturas de Compra") do |sheet|
+style1 = sheet.styles.add_style( :fg_color => "000000", b:true, :alignment=>{:horizontal => :right}, :font_name => "Calibri")
+style2 = sheet.styles.add_style(:alignment=>{:horizontal => :left}, :font_name => "Calibri")
+sheet.add_row ["Nro", "Fecha de la Factura" , "Nit proveedor", "Nombre o razon social" ,"N° de DUI", "N° de Factura" , "N° DE AUTORIZACIÓN", "Importe Total de la Compra", "Importe no sujeto a credito fiscal", "Subtotal", "Descuentos, Bonificaciones y Rebajas sujetas al IVA", "Importe Base para el Credito Fiscal", "Credito Fiscal", "Codigo de Control", "Tipo de compra"], :style => style1 
+  subtotales = 0
+  @purchases.each_with_index do |purchase, index|
+    subtotal = purchase["amount"] - (purchase["amount_not_subjet_to_tax_credict"] || 0)
+    subtotales += subtotal
+    amount_for_tax_credit = subtotal - purchase["discounts_and_bonuses"]
+    sheet.add_row [index + 1 , purchase["purchase_date"][0,10], purchase["nit"], purchase["name"], purchase["dui_number"],purchase["invoice_number"] , purchase["authorization_number"], purchase["amount"] ,purchase["amount_not_subjet_to_tax_credict"], subtotal , purchase["discounts_and_bonuses"] ,amount_for_tax_credit, amount_for_tax_credit * 0.13  ,purchase["control_code"], purchase["sales_type"]], :style => style2
+  end
+end

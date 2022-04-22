@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <%= form_with(model: item, id: 'item', local: true) do |form| %>
+      <div class="row">
+
+        <div class="col-md-6 m-b-20">
+          <% if item.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+            <ul>
+              <% item.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+
+          <div class="form-group">
+            <label for="image">Imagen del Producto</label>
+            <%= form.file_field :image %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'Nombre' %>
+            <%= form.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label 'Descripción' %>
+            <%= form.text_area :description, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label 'Categoría' %>
+            <%= form.select :category_id, options_for_select(Category.all.map{ |c| [c.name, c.id]}),  {}, { :class => 'form-control' } %>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox checkbox-primary">
+              <%= form.check_box :published %>
+              <label for="checkbox1">
+                Publicado
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6 m-b-20">
+          <div class="form-group">
+            <%= form.label 'sku' %>
+            <%= form.text_field :sku, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label 'Código de barra' %>
+            <%= form.text_field :upc, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label 'Precio' %>
+            <%= form.text_field :price, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label 'Precio de costo' %>
+            <%= form.text_field :cost_price, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+          <%= form.label 'Espeficicaciones' %>
+            <%= form.select :specification_value_id, options_for_select(SpecificationValue.all.map{ |c| [" #{Specification.find(c.specification_id).name}  -- #{c.value}", c.id]}),  {}, { :class => 'form-control' } %>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <%= link_to 'Atrás', items_path, class: 'btn btn-default' %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<button type="button" id="modalButton" style="visibility:hidden;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Seleccionar Espeficicaciones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  let charactericstModal = document.getElementById('charactericstModal')
+
+  charactericstModal.addEventListener('click', () => {  document.getElementById('modalButton').click() })
+
+</script>  

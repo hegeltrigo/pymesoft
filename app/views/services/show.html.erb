@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Entrada</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <br>
+        <p>
+          <strong>Nombre/Descripción:</strong>
+          <%= @service.name %>
+        </p>
+
+        <p>
+          <strong>Precio:</strong>
+          <%= @service.price %>
+        </p>
+
+
+        <br>
+        <%= link_to 'Editar', edit_service_path(@service), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', services_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

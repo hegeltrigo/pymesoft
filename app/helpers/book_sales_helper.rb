@@ -1,0 +1,2 @@
+module BookSalesHelper
+end

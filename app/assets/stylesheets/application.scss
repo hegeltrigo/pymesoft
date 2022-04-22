@@ -1,0 +1,61 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require css/bootstrap.min
+ *= require css/metismenu.min
+ *= require css/icons
+ *= require css/style.css
+ *= require css/style-home.css
+ *= require css/animate.css
+ *= require css/animate.min.css
+ *= require bootstrap-datepicker
+ *= require bootstrap-table
+ *= require_tree .
+
+ */
+
+ @import "toastr";
+
+
+ .toast-top-center {
+   top: 12px;
+   margin: 0 auto;
+   left: 40%;
+ }
+
+
+#sidebar-menu > ul > li > a {
+  color: black !important;
+}
+
+#sidebar-menu > ul > li > a.active {
+  color: black !important;
+  background-color: whitesmoke;
+}
+
+.topbar {
+  background: #004a99 !important;
+}
+
+.pos-image{
+  content: url(/assets/burrito-chicken.jpg);
+  height: 100px;
+  width: 150px;
+}
+
+.cursor-pointer { cursor: pointer; }
+
+.tabs-pos{
+  min-height: 90px !important;
+  border: 1px !important;
+} 

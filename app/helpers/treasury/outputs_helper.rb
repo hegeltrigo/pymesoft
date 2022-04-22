@@ -1,0 +1,2 @@
+module Treasury::OutputsHelper
+end

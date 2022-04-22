@@ -1,0 +1,67 @@
+.invoice{
+    padding: 0;
+    margin: 0;
+    width: 960px;
+    height: 741px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .invoice__header{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .invoice__header-company{
+    font-size: 18px;
+  }
+
+  .invoice__header-description {
+    display: flex;
+    justify-content: right;
+    flex-direction: column;
+    width: 440px;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .invoice__header-details{
+    width: 295px;
+    height: 95;
+    font-size: 14px;
+    border-radius: 3px;
+    text-align: right;
+  }
+
+  .invoice__header-details ul {
+    list-style: none;
+  }
+
+  .invoice__title{
+    text-align: center;
+  }
+
+  .invoice__customer{
+    width: 100%px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  }
+
+  .invoice__customer-date{
+    display: flex;
+    justify-content: left;
+    padding-left:3px ;
+    padding-bottom:25px ;
+    
+  }
+
+  .invoice__items-head{
+    background-color: black;
+    color: white;
+    border: none;
+    border-spacing:0;
+    border-collapse:collapse;
+  }

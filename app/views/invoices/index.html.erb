@@ -1,0 +1,83 @@
+ <div class="row">
+    <div class="col-sm-12">
+        <div class="header-title m-t-0 m-b-20">
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Facturas de Ventas</h5>
+            </div>
+            <div class="col-md-6">
+              <div class="text-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Buscar Factura de Venta
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+
+        <table class="table table-sm color-table primary-table" data-page-list="[10, 25, 50, 100, Todos]" data-pagination="true" data-show-columns="true" data-show-export="true" data-show-toggle="true" data-side-pagination="server" data-sort-name="id" data-sort-order="asc" data-toggle="table" id="items-table">
+          <thead>
+            <tr>
+              <th data-field="date" >Fecha de Factura</th>
+              <th data-field="number" >Nro de Factura</th>
+              <th data-field="amount" >Monto</th>
+              <th class="td-actions text-center" data-field="actions"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @result.each do |invoice|%>
+              <tr>
+                <td><%= invoice.created_at%></td>
+                <td><%= invoice.number%></td>
+                <td><%= invoice.amount%></td>
+                <td>
+                  <a class='btn btn-icon btn-info btn-sm' href='/invoices/<%=invoice.id %>'><i class='fa fa-eye'></i></a>   
+                  <a data-confirm='¿Estás seguro(a)?' class='btn btn-icon btn-danger btn-sm' rel='nofollow' data-method='delete' href='/invoices/<%=invoice.id %>'><i class='fa fa-remove'></i></a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>  
+
+      <br>
+
+
+    </div>          
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Buscar Factura de Venta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= search_form_for @search do |f| %>
+
+  <%= f.label :number_cont, "Numero Contiene" %>
+  <%= f.text_field :number_eq %>
+  <%= f.submit %>
+<% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,47 @@
+
+
+<% if session[:petty_cash_active].present? %>
+  <p id="notice"><%= notice %></p>
+
+  <div class="row">
+      <div class="col-md-6">
+        <h1>Diario</h1>
+      </div>
+      <div class="col-md-6 ">
+        <%= button_to "Cerrar Caja", close_petty_cash_treasury_petty_cashes_path, class: 'btn btn-danger pull-right', method: :post, params: { id: session[:petty_cash_active] } %>
+      </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Descripción</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @journals.each do |journal| %>
+        <tr>
+          <td><%= journal.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+          <td><%= journal.description %></td>
+          <%if journal.class.to_s == "Treasury::Input" %>
+            <td><%= journal.quantity %></td>
+            <td></td>
+          <% else %>
+             <td></td>
+            <td><%= journal.quantity %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<% else %>
+  <div class="alert alert-warning" role="alert">
+      Tiene que abrir caja para ver el diario
+  </div>
+<% end %>

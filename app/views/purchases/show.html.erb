@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="header-title m-t-0 m-b-20">Factura de Compra</h4>
+    </div>                 
+</div>      
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <p>
+          <strong>Proveedor:</strong>
+          <%= @purchase.supplier.name %>
+        </p>
+
+        <p>
+          <strong>Fecha de Compra:</strong>
+          <%= @purchase.purchase_date %>
+        </p>
+        
+        <p>
+          <strong>Nro de Factura o DUI</strong>
+          <%= @purchase.invoice_number.present? ? "Factura Nro: #{@purchase.invoice_number}" : "DUI Nro: #{@purchase.dui_number}" %>
+        </p>
+
+        <p>
+          <strong>Total</strong>
+          <%= @purchase.amount %>
+        </p>
+
+        <p>
+          <strong>Nro de Autorizacion:</strong>
+          <%= @purchase.authorization_number %>
+        </p>
+
+        <p>
+          <strong>Codigo de Control:</strong>
+          <%= @purchase.control_code %>
+        </p>
+
+        <p>
+          <strong>Tip de Compra:</strong>
+          <%= @purchase.get_sales_type %>
+        </p>
+        
+        <br>
+        <%= link_to 'Editar', edit_purchase_path(@purchase), class: 'btn btn-primary' %> 
+        <%= link_to 'Atrás', purchases_path, class: 'btn btn-default' %>
+
+    </div>          
+  </div>
+  
+</div>
+
+

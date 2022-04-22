@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <div class="row">
+      <div class="col-md-6 m-b-20">
+
+          <%= form_with(model: input, id: 'input', local: true) do |form| %>
+            <% if input.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(input.errors.count, "error") %> prohibited this input from being saved:</h2>
+
+                <ul>
+                <% input.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= form.label 'Producto' %>
+              <%= form.select :item_id, options_for_select(Item.all.map{ |c| [c.name, c.id]}),  {}, { :class => 'form-control' } %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label 'Proveedor' %>
+              <%= form.select :supplier_id, options_for_select(Supplier.all.map{ |c| [c.name, c.id]}),  {}, { :class => 'form-control' } %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Fecha' %>
+                <%= form.text_field :input_date, class: 'form-control datepicker' %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Cantidad' %>
+                <%= form.text_field :quantity, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= form.label 'Descripción' %>
+                <%= form.text_area :description, class: 'form-control' %>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <%= link_to 'Atrás', inputs_path, class: 'btn btn-default' %>
+
+        <% end %>
+      </div>
+    </div>  
+
+    </div>          
+  </div>
+  
+</div>
+
+

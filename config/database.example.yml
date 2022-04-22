@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: your_user
+  password: your_password
+
+development:
+  <<: *default
+  database: pymeh_development
+
+test:
+  <<: *default
+  database: pymeh_test
+
+production:
+  <<: *default
+  database: pymeh_production
+  username:
+  password:

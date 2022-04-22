@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @treasury_output.input_date %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @treasury_output.description %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @treasury_output.quantity %>
+</p>
+
+<p>
+  <strong>Caja chica:</strong>
+  <%= @treasury_output.treasury_petty_cash.start_date %>
+</p>
+
+<%= link_to 'Editar', edit_treasury_output_path(@treasury_output) %> |
+<%= link_to 'Atrás', treasury_outputs_path %>

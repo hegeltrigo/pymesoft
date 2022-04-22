@@ -1,0 +1,2 @@
+module Treasury::JournalHelper
+end
