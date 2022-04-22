@@ -26,7 +26,7 @@ class Home extends Component{
 
   render(){
     return(
-      <Provider store={store}>
+      <Provider>
         <BrowserRouter>
           <App company={this.props.company} invoice={this.props.invoice}/>
         </BrowserRouter>

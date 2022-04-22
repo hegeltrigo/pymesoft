@@ -1,46 +1,50 @@
-version: '3'
+version: "3.9"
 
 services:
-  postgres:
-    image: 'postgres:10-alpine'
-    environment:
-      POSTGRES_USER: 'youruser'
-      POSTGRES_PASSWORD: 'yourpassword'
-    ports:
-      - '5432:5432'
+  rails: &rails
+    build:
+      context: .
+      dockerfile: docker/compose/development/rails/Dockerfile
+      args:
+        BUNDLER_VERSION: "${BUNDLER_VERSION}"
+        POSTGRES_VERSION: "${POSTGRES_VERSION}"
+        NODE_VERSION: "${NODE_VERSION}"
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
-
-  webpack:
-    build: .
+      - .:/app
+      - bundle:/usr/local/bundle
     env_file:
-      - '.env'
-    command: ./bin/webpack-dev-server --inline true
-    volumes:
-      - '.:/front'
-    ports:
-      - '3035:3035'
-
-  web:
+      - docker/compose/development/.development
     depends_on:
-      - 'postgres'
-      - 'webpack'
-    build: .
-    tty: true
-    stdin_open: true
+      - postgres
+
+  app:
+    <<: *rails
+    command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
     ports:
-      - '3000:3000'
-    command: puma -C config/puma.rb
-    
+      - 5000:3000
+
+  webpacker:
+    <<: *rails
+    ports:
+      - "3035:3035"
+    command: ./bin/webpack-dev-server
+    depends_on:
+      - postgres
+
+  postgres:
+    image: "postgres:${POSTGRES_VERSION}"
     volumes:
-      - '.:/tiluu'
-      - cache:/cache # Added to support Windows 10 Docker
+      - postgres:/var/lib/postgresql/data
     environment:
-      - SPROCKETS_CACHE=/cache # Added to support Windows 10 Docker
-    env_file:
-      - '.env'
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
+
 
 volumes:
   postgres:
-  webpack:
-  cache: # Added to support Windows 10 Docker
+  bundle:

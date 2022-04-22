@@ -1,13 +1,13 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
-  pool: 5
-  username: your_user
-  password: your_password
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: pymesoft_development
+  database: <%= ENV['DATABASE_NAME'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USER_NAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 test:
   <<: *default
@@ -15,6 +15,7 @@ test:
 
 production:
   <<: *default
-  database: pymesoft_production
-  username:
-  password:
+  database: <%= ENV['DATABASE_NAME'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USER_NAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
