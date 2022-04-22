@@ -62,7 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 gem "ransack", "~> 2.3"
 
-gem 'complicode', :git => 'https://github.com/nibirulabs/complicode-ruby.git', :branch => 'develop'
+gem 'complicode', :git => 'https://github.com/nibirutechnologies/complicode-ruby.git', :branch => 'develop'
 
 gem 'numbers_and_words', :git => 'https://github.com/kslazarev/numbers_and_words.git'
 

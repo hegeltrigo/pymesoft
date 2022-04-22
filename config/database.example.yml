@@ -7,14 +7,14 @@ default: &default
 
 development:
   <<: *default
-  database: pymeh_development
+  database: pymesoft_development
 
 test:
   <<: *default
-  database: pymeh_test
+  database: pymesoft_test
 
 production:
   <<: *default
-  database: pymeh_production
+  database: pymesoft_production
   username:
   password:

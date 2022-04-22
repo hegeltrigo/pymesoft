@@ -14,7 +14,7 @@ GIT
       i18n (<= 2)
 
 GIT
-  remote: https://github.com/nibirulabs/complicode-ruby.git
+  remote: https://github.com/nibirutechnologies/complicode-ruby.git
   revision: 2923338475d1d40de17bd479fca3d19ae1c26758
   branch: develop
   specs:
